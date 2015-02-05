@@ -45,7 +45,7 @@ class wordutil:
         try:
             orijson = json.loads(word)
         except ValueError:
-            print "decoding error"
+            print "解析错误，请重新取词"
             return
 
         ret_key = orijson.keys()
