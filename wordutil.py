@@ -36,12 +36,18 @@ class wordutil:
 
     def getRequestWord(self,word):
         text = word.split('\n')[0].strip().strip('\r\n').strip('\r\n\x00')
-        print text
+        #print text
         return text
 
 
     def getResult(self,word):
-        orijson = json.loads(word)
+        orijson = {}
+        try:
+            orijson = json.loads(word)
+        except ValueError:
+            print "decoding error"
+            return
+
         ret_key = orijson.keys()
         if("errorCode" in orijson):
             codenum = orijson["errorCode"]
