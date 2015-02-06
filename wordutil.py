@@ -2,6 +2,7 @@
 import thread
 import time
 import os
+import sys
 
 import urllib2
 
@@ -19,7 +20,7 @@ class wordutil:
             var = os.popen('xsel').read()
             if(var!=self.word and var!=''):
                 varr = self.getRequestWord(var)
-                print varr
+                print "  [查询]:\t",varr
                 searchurl=self.url+varr
                 ret=''
                 req = urllib2.Request(searchurl)
@@ -30,9 +31,19 @@ class wordutil:
                 else:
                     #print ret
                     self.getResult(ret)
+                    self.printDone(var)
                 self.word=var
             time.sleep(0.2)
 
+
+    def printDone(self,var):
+        var_len = len(var)
+        if var_len>50:
+            var_len=30
+        print ""
+        for i in range(0,var_len+20):
+            sys.stdout.write('*')
+        print "Done."
 
     def getRequestWord(self,word):
         text = word.split('\n')[0].strip().strip('\r\n').strip('\r\n\x00')
@@ -67,16 +78,20 @@ class wordutil:
                 print "无辞典结果，仅在获取辞典结果生效"
                 return
         if("translation" in orijson):
-            print "翻译：",orijson["translation"][0]
+            if(orijson["translation"]==orijson["query"]):
+                print "未找到合适的翻译结果"
+            else:
+                print "  [翻译]:\t",orijson["translation"][0]
         if("basic" in ret_key):
             if("us-phonetic" in orijson["basic"]):
-                print "美式发音",orijson["basic"]["us-phonetic"]
+                print "  [美式发音]:\t",orijson["basic"]["us-phonetic"]
             if("uk-phonetic" in orijson["basic"]):
-                print "英式发音",orijson["basic"]["uk-phonetic"]
+                print "  [英式发音]:\t",orijson["basic"]["uk-phonetic"]
             if("explains" in orijson["basic"]):
                 explains = orijson["basic"]["explains"]
+                print "  [词典]:"
                 for ex in explains:
-                    print ex
+                    print "\t",ex
 
     def run(self):
         thread.start_new_thread(self.threadTest,())
