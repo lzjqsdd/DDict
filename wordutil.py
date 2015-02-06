@@ -5,6 +5,7 @@ import os
 import sys
 
 import urllib2
+import urllib
 
 import json
 
@@ -19,9 +20,10 @@ class wordutil:
         while self.count:
             var = os.popen('xsel').read()
             if(var!=self.word and var!=''):
+                self.printStart()
                 varr = self.getRequestWord(var)
                 print "  [查询]:\t",varr
-                searchurl=self.url+varr
+                searchurl=self.url+urllib.quote(varr)
                 ret=''
                 req = urllib2.Request(searchurl)
                 res_data = urllib2.urlopen(req)
@@ -35,6 +37,9 @@ class wordutil:
                 self.word=var
             time.sleep(0.2)
 
+    def printStart(self):
+        os.system("clear")
+        print "\t\t\033[1;31;40m%s\033[0m" % "[有道翻译fanyi.youdao.com提供]"
 
     def printDone(self,var):
         var_len = len(var)
@@ -42,8 +47,10 @@ class wordutil:
             var_len=30
         print ""
         for i in range(0,var_len+20):
+            if(i==(var_len+20)/2):
+                sys.stdout.write("Powerd by DDict")
             sys.stdout.write('*')
-        print "Done."
+        print ""
 
     def getRequestWord(self,word):
         text = word.split('\n')[0].strip().strip('\r\n').strip('\r\n\x00')
