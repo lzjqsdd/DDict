@@ -27,7 +27,7 @@ def init_ddict():
     
     swindow.add(text)
     youdao_logo = gtk.Image()
-    youdao_logo.set_from_file("images/youdao.gif")
+    youdao_logo.set_from_file(get_resource_path("images/youdao.gif"))
     vbox.pack_start(youdao_logo)
     vbox.pack_start(swindow)
 
@@ -45,7 +45,7 @@ def run_tasks(mtext,mtextbuffer,mwordutil,isclose):
         gtk.threads_enter()
         result = mwordutil.execfind()
         #print result
-        print "run"
+        #print "run"
         if(result!=""):
             mtextbuffer.set_text(result)
             mtext.set_buffer(mtextbuffer)

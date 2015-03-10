@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Name=DDict
+Comment=DDict Launcher
+Categories=Uitility;Application
+Exec=/usr/bin/env python "/home/lzjqsdd/github/DDict/App.py"
+Icon=/home/lzjqsdd/github/DDict/images/logo.png
+Terminal=false
+StartupNotify=true
