@@ -10,9 +10,14 @@ git checkout -b console origin/console
 ```
 
 当前版本运行：
-    执行方式：python result.py
-    在控制台下运行
+    执行方式：
+    - gtk浮动窗口 python app.py
+    - console运行 python result.py
 
 运行效果：
+
+
 ![查询单词](https://github.com/lzjqsdd/DDict/blob/master/images/console.png?raw=true)
+
+
 ![gkt浮窗](https://github.com/lzjqsdd/DDict/blob/master/images/app.png?raw=true)
