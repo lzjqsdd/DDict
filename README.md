@@ -9,10 +9,9 @@ git clone  https://github.com/lzjqsdd/DDict.git
 git checkout -b console origin/console
 ```
 
-当前版本运行：
-    执行方式：
-    - gtk浮动窗口 python app.py
-    - console运行 python result.py
+执行方式：
+- gtk浮动窗口 python app.py
+- console运行 python result.py
 
 运行效果：
 
